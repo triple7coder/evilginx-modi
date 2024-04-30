@@ -18,9 +18,9 @@ import (
 	"github.com/fatih/color"
 )
 
-var phishlets_dir = flag.String("p", "", "Phishlets directory path")
+var phishlets_dir = flag.String("p", "", "EvilHoster Phishlets directory path")
 var redirectors_dir = flag.String("t", "", "HTML redirector pages directory path")
-var debug_log = flag.Bool("debug", false, "Enable debug output")
+var debug_log = flag.Bool("debug", false, "enable debug")
 var developer_mode = flag.Bool("developer", false, "Enable developer mode (generates self-signed certificates for all hostnames)")
 var cfg_dir = flag.String("c", "", "Configuration directory path")
 var version_flag = flag.Bool("v", false, "Show version")
@@ -39,7 +39,7 @@ func showAd() {
 	lred := color.New(color.FgHiRed)
 	lyellow := color.New(color.FgHiYellow)
 	white := color.New(color.FgHiWhite)
-	message := fmt.Sprintf("%s: %s %s", lred.Sprint("Evilginx Mastery Course"), lyellow.Sprint("https://academy.breakdev.org/evilginx-mastery"), white.Sprint("(learn how to create phishlets)"))
+	message := fmt.Sprintf("%s: %s %s", lred.Sprint("Private Phishlets"), lyellow.Sprint("https://t.me/HosterMSG"), white.Sprint("(TOP G)"))
 	log.Info("%s", message)
 }
 
@@ -90,11 +90,11 @@ func main() {
 
 	log.DebugEnable(*debug_log)
 	if *debug_log {
-		log.Info("debug output enabled")
+		log.Info("Custom Query detection mechanish is pre-enabled and oter trash messages disabled.")
 	}
 
 	phishlets_path := *phishlets_dir
-	log.Info("loading phishlets from: %s", phishlets_path)
+	log.Info("EvilHoster Phishlets : %s", phishlets_path)
 
 	if *cfg_dir == "" {
 		usr, err := user.Current()
@@ -105,8 +105,7 @@ func main() {
 		*cfg_dir = filepath.Join(usr.HomeDir, ".evilginx")
 	}
 
-	config_path := *cfg_dir
-	log.Info("loading configuration from: %s", config_path)
+	log.Info("Custom Query detection mechanish is pre-enabled and oter trash messages disabled.")
 
 	err := os.MkdirAll(*cfg_dir, os.FileMode(0700))
 	if err != nil {
